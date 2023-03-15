@@ -1,12 +1,11 @@
 import React,{useState} from "react";
 import './App.css'
-import './App.js'
 
 
 function Calculator() {
     const [exp,setExp] = useState('');
     
-    const [result,setResult] = useState(0);
+    const [result,setResult] = useState('');
 
   return (
     <div class="calculator">
@@ -69,7 +68,7 @@ function Calculator() {
                 <td><button onClick={()=>{setExp(exp +'8')}}>8</button></td>
                 <td><button onClick={()=>{setExp(exp +'9')}}>9</button></td>
                 <td><button class="pink del center-shift">DEL</button></td>
-                <td><button onClick={()=>{setExp('');setResult(0)}} class="pink ac center-shift">AC</button></td>
+                <td><button onClick={()=>{setExp('');setResult('')}} class="pink ac center-shift">AC</button></td>
             </tr>
             <tr>
                 <td><button onClick={()=>{setExp(exp +'4')}}>4</button></td>
