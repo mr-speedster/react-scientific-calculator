@@ -5,7 +5,9 @@ import './App.js'
 
 function Calculator() {
     const [exp,setExp] = useState('');
+    
     const [result,setResult] = useState(0);
+
   return (
     <div class="calculator">
         <span class="logo">Casio</span>
@@ -67,7 +69,7 @@ function Calculator() {
                 <td><button onClick={()=>{setExp(exp +'8')}}>8</button></td>
                 <td><button onClick={()=>{setExp(exp +'9')}}>9</button></td>
                 <td><button class="pink del center-shift">DEL</button></td>
-                <td><button onClick={()=>{setExp(0)}} class="pink ac center-shift">AC</button></td>
+                <td><button onClick={()=>{setExp('');setResult(0)}} class="pink ac center-shift">AC</button></td>
             </tr>
             <tr>
                 <td><button onClick={()=>{setExp(exp +'4')}}>4</button></td>
@@ -86,9 +88,9 @@ function Calculator() {
             <tr>
                 <td><button onClick={()=>{setExp(exp +'0')}} class="zero center-shift">0</button></td>
                 <td><button onClick={()=>{setExp(exp +'.')}} class="period center-shift">.</button></td>
-                <td><button  class="exp center-shift">EXP</button></td>
-                <td><button  class="ans center-shift">Ans</button></td>
-                <td><button  class="equals center-shift">=</button></td>
+                <td><button class="exp center-shift">EXP</button></td>
+                <td><button class="ans center-shift">Ans</button></td>
+                <td><button onClick={()=>{setResult(eval(exp))}}  class="equals center-shift">=</button></td>
             </tr>
         </table>
     </div>
