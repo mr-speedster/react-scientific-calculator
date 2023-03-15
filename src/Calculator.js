@@ -1,58 +1,12 @@
 import React,{useState} from "react";
 import './App.css'
+import {evaluate} from "mathjs";
 
 
 function Calculator() {
     const [exp,setExp] = useState('');
     
     const [result,setResult] = useState('');
-
-    function evaluateExpression(expression) {
-        const operators = {
-          '+': (a, b) => a + b,
-          '-': (a, b) => a - b,
-          '*': (a, b) => a * b,
-          '/': (a, b) => a / b,
-        };
-        
-        const precedence = {
-          '+': 1,
-          '-': 1,
-          '*': 2,
-          '/': 2,
-        };
-        
-        const tokens = expression.match(/(\d+|\+|\-|\*|\/|\(|\))/g);
-        const output = [];
-        const operatorsStack = [];
-        
-        for (let i = 0; i < tokens.length; i++) {
-          const token = tokens[i];
-          
-          if (/\d+/.test(token)) {
-            output.push(parseInt(token));
-          } else if (operators[token]) {
-            while (operatorsStack.length > 0 && operatorsStack[operatorsStack.length - 1] !== '(' && precedence[operatorsStack[operatorsStack.length - 1]] >= precedence[token]) {
-              output.push(operators[operatorsStack.pop()](output.pop(), output.pop()));
-            }
-            operatorsStack.push(token);
-          } else if (token === '(') {
-            operatorsStack.push(token);
-          } else if (token === ')') {
-            while (operatorsStack[operatorsStack.length - 1] !== '(') {
-              output.push(operators[operatorsStack.pop()](output.pop(), output.pop()));
-            }
-            operatorsStack.pop();
-          }
-        }
-        
-        while (operatorsStack.length > 0) {
-          output.push(operators[operatorsStack.pop()](output.pop(), output.pop()));
-        }
-        
-        return Math.floor(output[0]);
-      }
-      
 
   return (
     <div class="calculator">
@@ -136,7 +90,7 @@ function Calculator() {
                 <td><button onClick={()=>{setExp(exp +'.')}} class="period center-shift">.</button></td>
                 <td><button class="exp center-shift">EXP</button></td>
                 <td><button class="ans center-shift">Ans</button></td>
-                <td><button onClick={()=>{setResult(evaluateExpression(exp))}}  class="equals center-shift">=</button></td>
+                <td><button onClick={()=>{setResult(evaluate(exp))}}  class="equals center-shift">=</button></td>
             </tr>
         </table>
     </div>
